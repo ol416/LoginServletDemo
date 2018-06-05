@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import static cn.ol.demo.util.ActiveUserCodeUtil.createActiveUserCode;
 
-//@WebServlet(urlPatterns = {"/testReg.do"})
+@WebServlet(urlPatterns = {"/testReg.do"})
 
 //, initParams = {
 //@WebInitParam(name = "smtphost", value = "smtp.sina.com"),

@@ -1,4 +1,4 @@
-package cn.ol.demo.login;
+package cn.ol.demo.servlet.login;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;

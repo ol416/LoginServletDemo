@@ -1,4 +1,4 @@
-package cn.ol.demo.Servlet.Register;
+package cn.ol.demo.servlet.register;
 
 import cn.ol.demo.domain.User;
 import cn.ol.demo.services.UserService;

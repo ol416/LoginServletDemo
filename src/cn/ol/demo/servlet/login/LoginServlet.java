@@ -1,4 +1,4 @@
-package cn.ol.demo.login;
+package cn.ol.demo.servlet.login;
 
 import cn.ol.demo.util.MySqlTest;
 
