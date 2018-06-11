@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
 
-@WebServlet(urlPatterns = {"/validateCode"})
+@WebServlet(name = "ValidateCode",urlPatterns = {"/validateCode"})
 public class ValidateCode extends HttpServlet {
     // 图形验证码的字符集，系统将随机从这个字符串中选择一些字符作为验证码
 
