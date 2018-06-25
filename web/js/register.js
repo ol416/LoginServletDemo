@@ -1,4 +1,11 @@
 $(document).ready(function() {
+    function btn_waring_show(state){
+        if(state === true){
+            $('#register').addClass('btn-warning');
+        }else if(state === false){
+            $('#register').removeClass('btn-warning');
+        }
+    }
     /* 明文/密文 */
     $('.btn-group .btn:first').click(function () {
         $(this).removeClass('btn-default').addClass('btn-success active');
@@ -18,13 +25,16 @@ $(document).ready(function() {
         $(this).on('input', function () {
             if ($.isNumeric($(this).val().substr(0, 1))) {  // 判断第一个字符是不是数字
                 $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
             } else {
                 $(this).parents('.form-group').removeClass('has-error');
+                btn_waring_show(false);
             }
         });
     }).blur(function () {
         if ($(this).val().length === 0) {
             $(this).parents('.form-group').addClass('has-error');
+            btn_waring_show(true);
         }
     });
 
@@ -34,13 +44,16 @@ $(document).ready(function() {
         $(this).on('input', function () {
             if ($(this).val().length === 0) {
                 $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
             } else {
                 $(this).parents('.form-group').removeClass('has-error');
+                btn_waring_show(false);
             }
         });
     }).blur(function () {
         if ($(this).val().length === 0) {
             $(this).parents('.form-group').addClass('has-error');
+            btn_waring_show(true);
         }
     });
 
@@ -49,13 +62,16 @@ $(document).ready(function() {
         $(this).on('input', function () {
             if ($(this).val().length === 0) {
                 $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
             } else {
                 $(this).parents('.form-group').removeClass('has-error');
+                btn_waring_show(false);
             }
         });
     }).blur(function () {
         if ($(this).val().length !== 11) {
             $(this).parents('.form-group').addClass('has-error');
+            btn_waring_show(true);
         }
     });
 
@@ -64,19 +80,23 @@ $(document).ready(function() {
         $(this).on('input', function () {
             if ($(this).val().length === 0) {
                 $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
             } else {
                 $(this).parents('.form-group').removeClass('has-error');
+                btn_waring_show(false);
             }
         });
     }).blur(function () {
         if (!$(this).val().match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) {
             $(this).parents('.form-group').addClass('has-error');
+            btn_waring_show(true);
         }
     });
     $('.btn-primary').click(function () {
         $('.register input:not("[type=file]")').each(function () {
             if ($(this).val().length === 0) {
                 $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
             }
         });
 

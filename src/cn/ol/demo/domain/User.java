@@ -1,5 +1,7 @@
 package cn.ol.demo.domain;
 
+import java.util.Date;
+
 public class User {
     private int id; //用户id
     private String username; //用户名
@@ -11,7 +13,7 @@ public class User {
     private String state; //状态[激活/非激活]
     private String activeCode; //激活码
     private String role; //用户角色[0:读者,1:作者]
-    private String registerationTime; //注册时间
+    private Date registerationTime; //注册时间
     private String lastLoginTime; //最后登录时间
 
     public int getId() {
@@ -94,11 +96,11 @@ public class User {
         this.role = role;
     }
 
-    public String getRegisterationTime() {
+    public Date getRegisterationTime() {
         return registerationTime;
     }
 
-    public void setRegisterationTime(String registerationTime) {
+    public void setRegisterationTime(Date registerationTime) {
         this.registerationTime = registerationTime;
     }
 

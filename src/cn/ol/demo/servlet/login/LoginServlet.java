@@ -1,17 +1,16 @@
 package cn.ol.demo.servlet.login;
 
-import cn.ol.demo.util.MySqlTest;
+import cn.ol.demo.domain.User;
+import cn.ol.demo.services.UserService;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
+import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/loginServlet"})
 /**
@@ -21,58 +20,39 @@ public class LoginServlet extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=utf-8");
-
-        PrintWriter out = resp.getWriter();
-
-        String username = req.getParameter("username");
-
-        String password = req.getParameter("password");
-
-        String validationCode = req.getParameter("validateCode");
-
-        HttpSession session = req.getSession();
-
-        String validation_code = (String)session.getAttribute("validation_code");
-
-        if(validationCode.equalsIgnoreCase(validation_code)){
-
-            session.setAttribute("code","验证码正确");
-
-        }else{
-
-            session.setAttribute("code", "验证码错误");
-
-        }
-
-        MySqlTest mss = new MySqlTest();
-
-        String result = mss.checkUser(username,password);
-
-        if (result.equals("hasUserNameAndPasswordCorrect")) {
-
-            session.setAttribute("login", "用户名和密码均正确");
-
-        } else if (result.equals("hasUserNameButPasswordInCorrect")) {
-
-            session.setAttribute("login","用户名正确,密码不正确");
-
-        } else if (result.equals("hasNoUserName")) {
-
-            session.setAttribute("login","没有此用户");
-
-        }
-
-        //转发到result.jsp
-
-        RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
-
-        rd.forward(req, resp);
-        session.removeAttribute("validation_code");
+        this.doPost(req, resp);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doGet(request,response);
+        // 1.获取登录页面输入的用户名与密码
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        // 2.调用service完成登录操作。
+        UserService service = new UserService();
+        try {
+            User user = service.login(username, password);
+
+            // 3.登录成功，将用户存储到session中.
+            request.getSession().setAttribute("user", user);
+            // 获取用户的角色，其中用户的角色分普通用户和超级用户两种
+            String role = user.getRole();
+            // 如果是超级用户，就进入到网上书城的后台管理系统；否则进入我的账户页面
+            if ("超级用户".equals(role)) {
+                response.sendRedirect(request.getContextPath() + "/admin/login/home.jsp");
+                return;
+            } else {
+                response.sendRedirect(request.getContextPath() + "/client/myAccount.jsp");
+                return;
+            }
+        } catch (LoginException e) {
+            // 如果出现问题，将错误信息存储到request范围，并跳转回登录页面显示错误信息
+            e.printStackTrace();
+            request.setAttribute("register_message", e.getMessage());
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            return;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

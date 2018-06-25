@@ -5,7 +5,7 @@
   Time: 0:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java"  contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>注册</title>
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-    <form class="form-horizontal register" action="{:U('handleRegister')}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal register" action="/register" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="col-lg-2 control-label" for="username">用户名<small>(必填)</small></label>
             <div class="col-lg-4">
@@ -37,14 +37,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-2 control-label" for="portrait">头像</label>
-            <div class="col-lg-4">
-                <input class="form-control" id="portrait" name="portrait" type="file" />
-                <img id="showPortrait" src="" alt=""/>
-                <span class="help-block">支持上传GIF,JPG,PNG图片，尺寸为70*70</span>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-lg-2 control-label" for="phone">电话<small>(必填)</small></label>
             <div class="col-lg-4">
                 <input class="form-control" id="phone" name="phone" type="text"/>
@@ -59,8 +51,22 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-lg-2 control-label" for="introduction">个人简介<small>(必填)</small></label>
+            <div class="col-lg-4">
+                <textarea class="form-control" rows="5" id="introduction" name="introduction" type="text"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="validateCode_img">验证码<small>(必填)</small></label>
+                <div class="col-lg-4">
+                    <input class="form-control" id="validateCode" name="validateCode" type="text"/>
+                    <img id="validateCode_img" src="validateCode">
+                </div>
+        </div>
+        </div>
+        <div class="form-group">
             <div class="col-lg-offset-2 col-lg-4">
-                <button class="btn btn-primary btn-block" type="button">注册</button>
+                <button id="register" class="btn btn-primary btn-block" type="button">注册</button>
             </div>
         </div>
     </form>
