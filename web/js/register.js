@@ -57,6 +57,26 @@ $(document).ready(function() {
         }
     });
 
+    //确认密码
+    $('#confirm_password').focus(function () {
+        $(this).on('input', function () {
+            if ($(this).val().length === 0) {
+                $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
+            } else if(!($("#password").val() === $(this).val())){
+                $(this).parents('.form-group').addClass('has-error');
+                btn_waring_show(true);
+            }else {
+                $(this).parents('.form-group').removeClass('has-error');
+                btn_waring_show(false);
+            }
+        });
+    }).blur(function () {
+        if ($(this).val().length === 0) {
+            $(this).parents('.form-group').addClass('has-error');
+            btn_waring_show(true);
+        }
+    });
 // 电话
     $('#phone').focus(function () {
         $(this).on('input', function () {

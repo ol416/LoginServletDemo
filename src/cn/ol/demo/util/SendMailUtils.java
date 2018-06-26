@@ -1,7 +1,5 @@
 package cn.ol.demo.util;
 
-import cn.ol.demo.util.MailUtils;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

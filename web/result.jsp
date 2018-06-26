@@ -13,7 +13,7 @@
 </head>
 <body>
     验证码：${sessionScope.code}<br>
-    登录信息：${sessionScope.login}<br>
+    登录信息：${sessionScope.gender}<br>
     sessionID：${pageContext.session.id}
 </body>
 </html>

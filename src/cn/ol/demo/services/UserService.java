@@ -22,6 +22,7 @@ public class UserService {
     }
 
     //激活码验证服务
+    //需要设计一个定期清除未激活的用户的类
     public void activeUser(String activeCode) throws SQLException, ActiveUserException {
         User user = userDao.findUserByActiveCode(activeCode);
         if(user == null){

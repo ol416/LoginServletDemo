@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-    <form class="form-horizontal register" action="/register" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal register" action="/register" method="post">
         <div class="form-group">
             <label class="col-lg-2 control-label" for="username">用户名<small>(必填)</small></label>
             <div class="col-lg-4">
@@ -37,9 +37,32 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-lg-2 control-label" for="confirm_password">再次密码<small>(必填)</small></label>
+            <div class="col-lg-4">
+                <input class="form-control" id="confirm_password" name="password" type="password"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="username">性别</label>
+            <div class="col-lg-4">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="gender" id="male" value="1" checked>男
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="gender" id="female" value="2">女
+                    </label>
+                </div>
+            </div>
+            </div>
+
+        <div class="form-group">
             <label class="col-lg-2 control-label" for="phone">电话<small>(必填)</small></label>
             <div class="col-lg-4">
-                <input class="form-control" id="phone" name="phone" type="text"/>
+                <input class="form-control" id="phone" name="telephone" type="text"/>
                 <span class="help-block">电话号码为11位</span>
             </div>
         </div>

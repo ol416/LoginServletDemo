@@ -24,9 +24,7 @@ public class RegisterServlet extends HttpServlet {
             // 封裝激活码
             user.setActiveCode(ActiveUserCodeUtil.createActiveUserCode());
 
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
